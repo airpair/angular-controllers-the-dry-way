@@ -1,8 +1,8 @@
 ##Introduction
-As I started getting my hands dirty into my latest business application frontend built entirely in Angular plus some other smaller libraries, I wanted more and more to share code among controllers. 
+As I started getting my hands dirty into my latest business application frontend built entirely in AngularJS plus some other smaller JavaScript libraries, I wanted more and more to share code among controllers. 
 
 ##Don't Repeat Yourself
-DRY or don't repeat yourself is a main principal of well written software applications, basically copying and pasting the same code snippets among different places in your application doubles the ripple effect where you have to change in so many places in response to accomplish one modification. 
+DRY or "Don't Repeat Yourself" is a main principal of well written software applications, basically copying and pasting the same code snippets among different places in your application doubles the ripple effect where you have to change in so many places in response to one modification request. 
 
 The typical advice was to move the shared code into a service and then inject this service into your controller and use it.
 
@@ -10,17 +10,17 @@ This method is fine, however, say that I have a directive that I will be using i
 
 This directive has the same functionality in all these places with a small variation each time. 
 
-Of course, I don't want to create big controller that handles all the use cases of my directives, what I want is a small lean controller for each directive that reuses the common code in the service and then amends it  to suit the needs of the directive.
+Of course, I don't want to create a big controller that handles all the use cases of my directives, what I want is a small lean controller for each directive that reuses the common code in the base service and then amends it to suit the needs of the directive.
 
 ##Template Method Design Pattern
-One way to implement that is by using Template Method design pattern.  Template Method pattern defines a skeleton of the base controller function, and defers some steps to the individual controllers to implement. 
+One way to implement that is by using "Template Method" design pattern.  Template Method pattern defines a skeleton of the base controller function, and defers some steps to the individual controllers to implement. 
 
 Template method design pattern not only separates the common code to the base controller but also forces specific structure to the client controllers which makes code more maintainable.
 
-Also, in order to have different controllers for each of our directives we need to allow the directive to accept the controller as a parameter.
+Also, in order to have different controllers for each instance of the directive we need to allow the directive to accept the controller as a parameter.
 
 ##How to implement this
-In the following part of this post I am sharing with you how to do that.
+In the following section of this post I am sharing with you how to do that.
 
 1- Create template method as an Angular service. Use the service to create a constructor function so it can be instantiated and modified by different controllers.
 
@@ -79,7 +79,7 @@ app.controller('ctrl1', function($scope, templateCtrlSvc, $log) {
 });
 ```
 
-3- In each controller create template method using Angular service. Create an object of the template method, and override the default functions implementation you with to modify.
+3- In each controller create create an object of the template method, and override the default functions implementation you wish to modify.
 
 ```javascript
 //Second Controller
@@ -136,7 +136,7 @@ app.directive( 'welcomeButton', function($log) {
     };
   });
 ```
-5- Finally use the directive in your application, provide the controller name as an attribute to the controller.
+5- Finally use the directive in your application, provide the controller name as an attribute to the directive.
 
 ```html
 
@@ -150,9 +150,9 @@ app.directive( 'welcomeButton', function($log) {
 
 ```
 
-Here is a [plunker](http://plnkr.co/edit/hv2Kzl "Plunker") for a complete working sample. Please open the console to notice how both directives are constructed by using the common code from template method and how both override some of the steps to provide their own modification.
+Here is a [plunker](http://plnkr.co/edit/hv2Kzl "Plunker") for a complete working sample. Please open the developer tools console to notice how both directives are constructed by using the common code from template method and how both override some of the steps to provide their own modification.
 
 ##Conclusion
-Using Template Method design pattern provides structure and allows reusing code among angular controllers.
+Using Template Method design pattern provides structure and allows reusing code among Angular controllers.
 
 
