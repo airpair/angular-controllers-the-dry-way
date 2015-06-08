@@ -1,8 +1,8 @@
 ##Introduction
-As I started getting my hands dirty into my latest business application frontend built entirely in AngularJS plus some other smaller JavaScript libraries, I wanted more and more to share code among controllers. 
+As I started getting my hands dirty into my latest business application frontend built entirely in [AngularJS](http://www.angularjs.org "AngualrJS") plus some other smaller JavaScript libraries, I wanted more and more to share code among controllers. 
 
 ##Don't Repeat Yourself
-DRY or "Don't Repeat Yourself" is a main principal of well written software applications, basically copying and pasting the same code snippets among different places in your application doubles the ripple effect where you have to change in so many places in response to one modification request. 
+[DRY](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself "DRY") or "Don't Repeat Yourself" is a main principal of well written software applications, basically copying and pasting the same code snippets among different places in your application doubles the ripple effect where you have to change in so many places in response to one modification request. 
 
 The typical advice was to move the shared code into a service and then inject this service into your controller and use it.
 
@@ -13,7 +13,7 @@ This directive has the same functionality in all these places with a small varia
 Of course, I don't want to create a big controller that handles all the use cases of my directives, what I want is a small lean controller for each directive that reuses the common code in the base service and then amends it to suit the needs of the directive.
 
 ##Template Method Design Pattern
-One way to implement that is by using "Template Method" design pattern.  Template Method pattern defines a skeleton of the base controller function, and defers some steps to the individual controllers to implement. 
+One way to implement that is by using [Template Method](https://sourcemaking.com/design_patterns/template_method "Template Method") design pattern.  Template Method pattern defines a skeleton of the base controller function, and defers some steps to the individual controllers to implement. 
 
 Template method design pattern not only separates the common code to the base controller but also forces specific structure to the client controllers which makes code more maintainable.
 
